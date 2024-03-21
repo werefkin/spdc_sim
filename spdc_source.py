@@ -83,12 +83,12 @@ class SPDC_source:
         ax2.set_xticklabels(np.round(
             self.xtick_positions * self.lambda_p / (self.xtick_positions - self.lambda_p), 3))
         ax1.set_ylim(0, 1.2)
-        plt.show()
         name = str(self.temp) + '_' + str(round(self.PP[self.ind] * 1e6, 2)) + '_' + str(self.lambda_p * 1000) + '_' + str(self.ll * 1000)
         plt.savefig('./output/' + name + '.png',
                     bbox_inches='tight',
                     transparent=True,
                     dpi=200)
+        plt.show()
 
     def plot_PSD_pp(self, pol_period):
         pol_period = pol_period * 1e-6
@@ -111,13 +111,13 @@ class SPDC_source:
         ax2.set_xticklabels(np.round(
             self.xtick_positions * self.lambda_p / (self.xtick_positions - self.lambda_p), 3))
         ax1.set_ylim(0, 1.2)
-        plt.show()
         name = str(self.temp) + '_' + str(pol_period * 1e6) + '_' + \
             str(self.lambda_p * 1000) + '_' + str(self.ll * 1000)
         plt.savefig('./output/' + name + '.png',
                     bbox_inches='tight',
                     transparent=True,
                     dpi=200)
+        plt.show()
 
     def plot_ref_indices(self):
         plt.figure()

@@ -18,7 +18,7 @@ lambda_i_max = 4.5  # um
 # ppln.result()
 
 ppktp = spdc(
-    0.65975,
+    0.65974,
     3.7,
     lambda_i_min,
     lambda_i_max,
