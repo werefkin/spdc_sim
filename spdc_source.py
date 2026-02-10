@@ -60,8 +60,8 @@ class SPDC_source:
             dK = self.delta_k
         if ll is None:
             ll = self.ll
-        self.SPDC_PSD = np.sinc(
-            dK * ll / 2) ** 2  # Power spectral density
+        x = dK * ll / 2
+        self.SPDC_PSD = (np.sin(x) / x) ** 2
         return self.SPDC_PSD
 
     def plot_PSD(self):

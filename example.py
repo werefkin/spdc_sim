@@ -28,3 +28,15 @@ ppktp = spdc(
     T=23)
 
 ppktp.plot_PSD_pp(pol_period=20.45)
+
+
+ppktp2 = spdc(
+    0.65974,
+    3.7,
+    lambda_i_min,
+    lambda_i_max,
+    ref_ind_ktp_idl,
+    ref_ind_ktp_si_pu,
+    crystal_length=2.55,
+    T=25)
+ppktp2.plot_PSD_pp(pol_period=20.45)
