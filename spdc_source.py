@@ -14,7 +14,49 @@ class SPDC_source:
             N=1024,
             crystal_length=2,
             T=25):
-        self.c = 3 * 1e8
+        """
+        Parameters
+        ----------
+        lambda_pump : float
+            Pump wavelength in um. Sets the pump frequency used for
+            energy conservation and phase-matching calculations.
+
+        center_wavelength : float
+            Center wavelength in um to which the Delta_k = 0 is forced (to calculate a poling period).
+
+        lambda_idler_min : float
+            Minimum idler wavelength to include in the simulation window
+            (um).
+
+        lambda_idler_max : float
+            Maximum idler wavelength to include in the simulation window
+            (um).
+
+        ref_ind_function_idler : callable
+            Refractive-index (Sellmeier) function for the idler.
+            Expected signature should be something like:
+                n_i = ref_ind_function_idler(lambda_um, T_C)
+            returning the refractive index at wavelength `lambda_um` and (optinal) temperature `T_C`.
+            (If your Sellmeier functions do not use temperature, they may ignore `T_C`.)
+
+        ref_ind_function_signal_pump : callable
+            Refractive-index (Sellmeier) function used for signal and pump
+            Expected signature similar to:
+                n_sp = ref_ind_function_signal_pump(lambda, T_C)
+
+        ref_ind_function_idler and ref_ind_function_signal_pump can be the same if well defined.
+        
+        N : int, optional (default: 1024)
+            Number of sampling points in the spectral grid.
+
+        crystal_length : float, (default: 2)
+            Nonlinear crystal length in mm.
+
+        T : float, optional (default: 25)
+            Crystal temperature in degrees Celsius. Used by temperature-dependent (if they are)
+            Sellmeier equations (and thus affects phase matching / optimal poling period).
+        """
+        self.c = 299792458
         self.lambda_p = lambda_pump
         self.center_wavelength = center_wavelength
         self.lambda_i = np.linspace(lambda_idler_min, lambda_idler_max, N)
