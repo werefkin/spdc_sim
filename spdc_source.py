@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import os
 
 
 class SPDC_source:
@@ -126,6 +127,7 @@ class SPDC_source:
             self.xtick_positions * self.lambda_p / (self.xtick_positions - self.lambda_p), 3))
         ax1.set_ylim(0, 1.2)
         name = str(self.temp) + '_' + str(round(self.PP[self.ind] * 1e6, 2)) + '_' + str(self.lambda_p * 1000) + '_' + str(self.ll * 1000)
+        os.makedirs("./output", exist_ok=True)
         plt.savefig('./output/' + name + '.png',
                     bbox_inches='tight',
                     transparent=True,
@@ -155,6 +157,7 @@ class SPDC_source:
         ax1.set_ylim(0, 1.2)
         name = str(self.temp) + '_' + str(pol_period * 1e6) + '_' + \
             str(self.lambda_p * 1000) + '_' + str(self.ll * 1000)
+        os.makedirs("./output", exist_ok=True)
         plt.savefig('./output/' + name + '.png',
                     bbox_inches='tight',
                     transparent=True,
