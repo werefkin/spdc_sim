@@ -1,19 +1,48 @@
-# Simulation of broadband SPDC PSD (group velocity matching)
+# Simulation of (ultra-)broadband spontaneous-parametric down-conversion
 
-A small Python library for simulating the **broadband SPDC power spectral density (PSD)** and estimating the **optimal poling period** (quasi-phase matching) under **group-velocity matching (GVM)** conditions.
+A Python library for simulating the **(ultra-)broadband SPDC power spectral density (PSD)** profiles and estimating the **poling period** options (quasi-phase matching) under e.g. **group-velocity matching (GVM)** conditions.
 
 The repository provides:
 - `spdc_source.py`: a configurable `SPDC_source` class (inputs: refractive indices, pump wavelength, signal&idler spans; temperature)
-- `example.py`: a minimal usage example
+- `example.py`: a minimal usage example (demonstrated for KTP crystal)
 - `sellmeier_eqs.py`: Sellmeier equations used to compute refractive indices / dispersion
 
 ## Background
 
-This implementation follows the modeling approach from:
+The implementation for periodic poling follows the modeling approach from (simpliest scenario):
 
 Aron Vanselow, Paul Kaufmann, Helen M. Chrzanowski, and Sven Ramelow,  
 **“Ultra-broadband SPDC for spectrally far separated photon pairs,”** *Optics Letters* **44**, 4638–4641 (2019).  
 DOI: https://doi.org/10.1364/OL.44.004638
+
+and for aperiodic structures generalized formalism for amplitude evoluton is used.
+
+It is based on numerical solution of the integral for the idler amplitude:
+$$
+A_i(z, \omega) ∝ \int_{0}^{l} e^{i\phi(z', \omega)}\,dz'.
+$$
+
+where
+
+$$
+\phi(z',\omega)=\int_{z_0}^{z'} \kappa(\xi,\omega)\,d\xi .
+$$
+is the accumulated phase.
+
+The SPDC spectral density is then computed as
+$$
+\mathrm{PSD}(\omega)\propto |A_i(\omega)|^2 .
+$$
+
+The methods are adapted from:
+
+[1] Mathieu Charbonneau-Lefort, Bedros Afeyan, and M. M. Fejer,  
+**“Optical parametric amplifiers using chirped quasi-phase-matching gratings I: practical design formulas,”** *Journal of the Optical Society of America B* **25**, 463-480 (2008).  
+DOI: https://doi.org/10.1364/JOSAB.25.000463
+
+[2] Martin M. Fejer, G.A. Magel, Dieter H. Jundt, and Robert L. Byer
+**“Quasi-phase-matched second harmonic generation: tuning and tolerances,”** *IEEE Journal of Quantum Electronics* **28**(11), 2631-2654 (1992).  
+DOI: https://doi.org/10.1109/3.161322
 
 ## Repository structure
 
@@ -27,7 +56,7 @@ DOI: https://doi.org/10.1364/OL.44.004638
 
 - **`example.py`**  
   Demonstrates typical usage: defining an SPDC source, evaluating the PSD, and extracting an optimal poling period.
-  Certain poling period can be forced.
+  Certain poling period (in the updated version including aperiodic structures) can be forced.
 
 ## Quick start
 
