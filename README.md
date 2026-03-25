@@ -18,15 +18,15 @@ DOI: https://doi.org/10.1364/OL.44.004638
 and for aperiodic structures generalized formalism for amplitude evoluton is used.
 
 It is based on numerical solution of the integral for the idler amplitude:
-$$
+```math
 A_i(z, \omega) ∝ \int_{0}^{l} e^{i\phi(z', \omega)}\,dz'.
-$$
+```
 
 where
 
-$$
+```math
 \phi(z',\omega)=\int_{z_0}^{z'} \kappa(\xi,\omega)\,d\xi .
-$$
+```
 is the accumulated phase.
 
 The SPDC spectral density is then computed as
