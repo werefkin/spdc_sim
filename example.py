@@ -16,6 +16,7 @@ lambda_i_max = 5.5  # um
 pump_wavelength = 0.65974  # um
 crystal_length = 5  # mm
 
+# Example for another crystal (PPLN)
 # ppln = spdc(0.785, 3.5, lambda_i_min, lambda_i_max, ref_ind_ln, ref_ind_ln, crystal_length=5)
 # ppln.plot_PSD()
 # ppln.plot_ref_indices()
@@ -37,19 +38,11 @@ ppktp.plot_PSD_pp(pol_period=20.45)
 # Aperioddic case
 PN = 16384
 p_sta = 19.5
-P_end = 20.6
+P_end = 20.55
 p_range = np.linspace(p_sta, P_end, PN)
 
-# Fun with chirps
-# # quadratic chirp
-# p_mid = 19.51      # midd
-# dp = 20.56 - 19.51      # edges
 
-# u = np.linspace(0, 1, PN)   # center = 0, edges = ±1
-# p_range = p_mid + dp * u**2
-# Sinusoidal chirp
-# p_range = p_mid + np.sin(10 * u * np.pi - np.pi / 2) * dp * 10
-
+# Demo
 plt.figure()
 plt.plot(np.linspace(0, crystal_length, PN), p_range)
 plt.xlabel(r'Position along the crystal $z$ (mm)')
@@ -58,6 +51,8 @@ plt.show()
 
 
 ppktp.SPDC_spectrum_ap(poling_period_range=p_range * 1e-6)
+ppktp.plot_PSD_ap(poling_period_range=p_range * 1e-6)
+
 sim_spe = ppktp.SPDC_spectrum_ap(poling_period_range=p_range * 1e-6)
 sim_spe_pp = ppktp.SPDC_spectrum()
 
